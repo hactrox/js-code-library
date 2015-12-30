@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="./pbkdf2.js"></script>
+	<script src="./hmac-sha1.js"></script>
+	<script src="./enc-base64-min.js"></script>
+
+	<script>
+		function GenerateHashCode(pass, salt) {
+			var saltStr = '';
+			for (var i = 0; i < salt.length; ++i) {
+				saltStr += String.fromCharCode(salt.charCodeAt(i));
+			}
+			var parsedSalt = CryptoJS.enc.Base64.parse(window.btoa(saltStr));
+			var hash = CryptoJS.PBKDF2(pass, parsedSalt, {keySize: 6, iterations: 1000})
+			return CryptoJS.enc.Base64.stringify(hash);
+		}
+
+		function aa() {
+			document.getElementById('hash').innerHTML = GenerateHashCode('password', 'saltstring');
+		}
+	</script>
+</head>
+
+<body onload='aa()'>
+		<div id='hash'></div>
+</body>
+</html>
