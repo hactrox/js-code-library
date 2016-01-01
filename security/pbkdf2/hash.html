@@ -12,12 +12,15 @@
 				saltStr += String.fromCharCode(salt.charCodeAt(i));
 			}
 			var parsedSalt = CryptoJS.enc.Base64.parse(window.btoa(saltStr));
-			var hash = CryptoJS.PBKDF2(pass, parsedSalt, {keySize: 6, iterations: 1000})
+			var hash = CryptoJS.PBKDF2(pass, parsedSalt, {keySize: 6, iterations: 1000});
 			return CryptoJS.enc.Base64.stringify(hash);
 		}
 
 		function aa() {
-			document.getElementById('hash').innerHTML = GenerateHashCode('password', 'saltstring');
+			var hash = GenerateHashCode('aaAA123', 'shengruiwearefamily');
+			var hash2 = GenerateHashCode(hash, 'saltString');
+			var result = hash2.replace("+", "%2B");
+			document.getElementById('hash').innerHTML = result;
 		}
 	</script>
 </head>
