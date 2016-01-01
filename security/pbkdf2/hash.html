@@ -19,7 +19,7 @@
 		function aa() {
 			var hash = GenerateHashCode('aaAA123', 'shengruiwearefamily');
 			var hash2 = GenerateHashCode(hash, 'saltString');
-			var result = hash2.replace("+", "%2B");
+			var result = hash2.replace(/\+/g, '%2B');
 			document.getElementById('hash').innerHTML = result;
 		}
 	</script>
